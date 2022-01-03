@@ -1,6 +1,6 @@
 ############
-# AUTHOR: An Jiaoyang
-# DATE: 2018-10-11
+# AUTHOR: Peyman Tahghighi
+# DATE: 2021-07-11
 ############
 """Deformable Convolutional Layer
 """
@@ -116,47 +116,7 @@ class DeformableConvLayer2D(tf.keras.layers.Layer):
 
     def call(self, inputs):
 
-        # if self.first is True:
-        #     input_dim = inputs.get_shape()[-1]
-        #     # kernel_shape = self.kernel_size + (input_dim, self.filters)
-        #     # we want to use depth-wise conv
-        #     kernel_shape = self.kernel_size + (self.filters * input_dim, 1)
-        #     self.kernel = self.add_weight(
-        #         name='kernel',
-        #         shape=kernel_shape,
-        #         initializer=self.kernel_initializer,
-        #         regularizer=self.kernel_regularizer,
-        #         constraint=self.kernel_constraint,
-        #         trainable=True,
-        #         dtype=self.dtype)
-        #     if self.use_bias:
-        #         self.bias = self.add_weight(
-        #             name='bias',
-        #             shape=(self.filters,),
-        #             initializer=self.bias_initializer,
-        #             regularizer=self.bias_regularizer,
-        #             constraint=self.bias_constraint,
-        #             trainable=True,
-        #             dtype=self.dtype)
-
-        #     # create offset conv layer
-        #     offset_num = self.kernel_size[0] * self.kernel_size[1] * self.num_deformable_group
-        #     self.offset_layer_kernel = self.add_weight(
-        #         name='offset_layer_kernel',
-        #         shape=self.kernel_size + (input_dim, offset_num * 2),  # 2 means x and y axis
-        #         initializer=tf.zeros_initializer(),
-        #         regularizer=self.kernel_regularizer,
-        #         trainable=True,
-        #         dtype=self.dtype)
-        #     self.offset_layer_bias = self.add_weight(
-        #         name='offset_layer_bias',
-        #         shape=(offset_num * 2,),
-        #         initializer=tf.zeros_initializer(),
-        #         # initializer=tf.random_uniform_initializer(-5, 5),
-        #         regularizer=self.bias_regularizer,
-        #         trainable=True,
-        #         dtype=self.dtype)
-        #     self.built = True
+    
 
         # get offset, shape [batch_size, out_h, out_w, filter_h, * filter_w * channel_out * 2]
         offset = tf.nn.conv2d(inputs,
